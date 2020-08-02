@@ -35,11 +35,12 @@ public class TextServiceImpl implements TextService {
 
         List<Sentence> sentencesList = textComponentsGetter.getTextSentences(text);
         for (Sentence sentence : sentencesList) {
-            List<Word> sentenceWords = textComponentsGetter.getSentenceWords(sentence);
             List<PunctuationMark> sentencePunctuationMarks = textComponentsGetter.getSentencePunctuationMarks(sentence);
 
             if (sentencePunctuationMarks.contains('?')) {
                 resultList.add(sentence);
+
+                List<Word> sentenceWords = textComponentsGetter.getSentenceWords(sentence);
                 for (Word sentenceWord : sentenceWords) {
                     if (sentenceWord.getData().length() == givenLength) {
                         set.add(sentenceWord);
