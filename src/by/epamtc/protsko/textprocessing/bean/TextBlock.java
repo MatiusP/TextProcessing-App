@@ -5,16 +5,16 @@ import java.util.List;
 
 public class TextBlock implements DataComponent {
 
-    private String textBlock;
+    private String data;
     private List<Sentence> sentences;
 
-    public TextBlock(String textBlock) {
-        this.textBlock = textBlock;
+    public TextBlock(String data) {
+        this.data = data;
         sentences = new ArrayList<>();
     }
 
-    public String getTextBlock() {
-        return textBlock;
+    public String getData() {
+        return data;
     }
 
     public List<Sentence> getSentences() {
@@ -40,19 +40,19 @@ public class TextBlock implements DataComponent {
 
         TextBlock textBlock1 = (TextBlock) o;
 
-        if (textBlock != null ? !textBlock.equals(textBlock1.textBlock) : textBlock1.textBlock != null) return false;
+        if (data != null ? !data.equals(textBlock1.data) : textBlock1.data != null) return false;
         return sentences != null ? sentences.equals(textBlock1.sentences) : textBlock1.sentences == null;
     }
 
     @Override
     public int hashCode() {
-        int result = textBlock != null ? textBlock.hashCode() : 0;
+        int result = data != null ? data.hashCode() : 0;
         result = 31 * result + (sentences != null ? sentences.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "TextBlock: " + textBlock + ", sentences=" + sentences;
+        return getClass().getName() + ": " + data + ", sentences=" + sentences;
     }
 }

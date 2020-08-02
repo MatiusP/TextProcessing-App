@@ -1,6 +1,6 @@
 package by.epamtc.protsko.textprocessing.dao.exception;
 
-public class DAOException extends Exception {
+public class DAOException extends RuntimeException {
 
     public DAOException() {
     }
@@ -13,9 +13,7 @@ public class DAOException extends Exception {
         super(exception);
     }
 
-    public DAOException(String message, Exception exception ) {
+    public DAOException(String message, Exception exception) {
         super(message, exception);
     }
-
-
 }

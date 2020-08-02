@@ -1,20 +1,20 @@
 package by.epamtc.protsko.textprocessing.service.exception;
 
-public class ServiceException extends Exception {
+public class ServiceException extends RuntimeException {
 
-    public ServiceException(){
+    public ServiceException() {
         super();
     }
 
-    public ServiceException(String message){
+    public ServiceException(String message) {
         super(message);
     }
 
-    public ServiceException (Exception exception){
+    public ServiceException(Exception exception) {
         super(exception);
     }
 
-    public ServiceException(String message, Exception exception){
+    public ServiceException(String message, Exception exception) {
         super(message, exception);
     }
 }

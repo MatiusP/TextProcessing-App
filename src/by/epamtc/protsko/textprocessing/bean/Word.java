@@ -2,15 +2,15 @@ package by.epamtc.protsko.textprocessing.bean;
 
 public class Word extends SentenceComponent {
 
-    private String word;
+    private String data;
 
-    public Word(String word, int componentOrder) {
-        this.word = word;
+    public Word(String data, int componentOrder) {
+        this.data = data;
         this.sentenceComponentOrder = componentOrder;
     }
 
-    public String getWord() {
-        return word;
+    public String getData() {
+        return data;
     }
 
     @Override
@@ -20,16 +20,16 @@ public class Word extends SentenceComponent {
 
         Word word1 = (Word) o;
 
-        return word != null ? word.equals(word1.word) : word1.word == null;
+        return data != null ? data.equals(word1.data) : word1.data == null;
     }
 
     @Override
     public int hashCode() {
-        return word != null ? word.hashCode() : 0;
+        return data != null ? data.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "Word: " + word;
+        return getClass().getName() + ": " + data;
     }
 }

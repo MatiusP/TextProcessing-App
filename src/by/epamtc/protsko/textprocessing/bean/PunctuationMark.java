@@ -2,15 +2,15 @@ package by.epamtc.protsko.textprocessing.bean;
 
 public class PunctuationMark extends SentenceComponent {
 
-    private String punctuationMark;
+    private String data;
 
-    public PunctuationMark(String punctuationMark, int componentOrder) {
-        this.punctuationMark = punctuationMark;
+    public PunctuationMark(String data, int componentOrder) {
+        this.data = data;
         this.sentenceComponentOrder = componentOrder;
     }
 
-    public String getPunctuationMark() {
-        return punctuationMark;
+    public String getData() {
+        return data;
     }
 
     @Override
@@ -20,16 +20,16 @@ public class PunctuationMark extends SentenceComponent {
 
         PunctuationMark that = (PunctuationMark) o;
 
-        return punctuationMark != null ? punctuationMark.equals(that.punctuationMark) : that.punctuationMark == null;
+        return data != null ? data.equals(that.data) : that.data == null;
     }
 
     @Override
     public int hashCode() {
-        return punctuationMark != null ? punctuationMark.hashCode() : 0;
+        return data != null ? data.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "Punctuations mark: " + punctuationMark;
+        return getClass().getName() + ": " + data;
     }
 }

@@ -3,20 +3,20 @@ package by.epamtc.protsko.textprocessing.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Text implements DataComponent {
+public class Text {
 
-    private List<DataComponent> text;
+    private List<DataComponent> data;
 
     public Text() {
-        text = new ArrayList<>();
+        data = new ArrayList<>();
     }
 
-    public List<DataComponent> getText() {
-        return text;
+    public List<DataComponent> getData() {
+        return data;
     }
 
     public void addDataComponent(DataComponent dataComponent) {
-        text.add(dataComponent);
+        data.add(dataComponent);
     }
 
     @Override
@@ -26,16 +26,16 @@ public class Text implements DataComponent {
 
         Text text1 = (Text) o;
 
-        return text != null ? text.equals(text1.text) : text1.text == null;
+        return data != null ? data.equals(text1.data) : text1.data == null;
     }
 
     @Override
     public int hashCode() {
-        return text != null ? text.hashCode() : 0;
+        return data != null ? data.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return getClass().getName() + ": " + text + ';';
+        return getClass().getName() + ": " + data + ';';
     }
 }

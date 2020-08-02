@@ -2,19 +2,19 @@ package by.epamtc.protsko.textprocessing.dao.impl;
 
 import by.epamtc.protsko.textprocessing.bean.Text;
 import by.epamtc.protsko.textprocessing.dao.TextDAO;
-import by.epamtc.protsko.textprocessing.dao.exception.DAOException;
-import by.epamtc.protsko.textprocessing.dao.parser.ParserSourceText;
-import by.epamtc.protsko.textprocessing.dao.reader.ReaderFromFile;
+import by.epamtc.protsko.textprocessing.dao.parser.SourceTextParser;
+import by.epamtc.protsko.textprocessing.dao.reader.DataReader;
 
 public class TextDAOImpl implements TextDAO {
+    private final String fileName = "source.txt";
 
     @Override
-    public Text getText() throws DAOException {
+    public Text getText() {
 
-        ReaderFromFile readerFromFile = new ReaderFromFile();
-        String sourceText = readerFromFile.readSourceFile("source.txt");
-        ParserSourceText parserSourceText = ParserSourceText.getInstance();
+        DataReader dataReader = new DataReader();
+        String sourceText = dataReader.readSourceFile(fileName);
+        SourceTextParser sourceTextParser = SourceTextParser.getInstance();
 
-        return parserSourceText.parseSourceText(sourceText);
+        return sourceTextParser.parse(sourceText);
     }
 }

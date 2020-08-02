@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Sentence {
 
-    private String sentence;
+    private String data;
     private List<SentenceComponent> sentenceComponents;
 
-    public Sentence(String sentence) {
-        this.sentence = sentence;
+    public Sentence(String data) {
+        this.data = data;
         sentenceComponents = new ArrayList<>();
     }
 
-    public String getSentence() {
-        return sentence;
+    public String getData() {
+        return data;
     }
 
     public void setSentenceComponents(List<SentenceComponent> sentenceComponents) {
@@ -40,19 +40,19 @@ public class Sentence {
 
         Sentence sentence1 = (Sentence) o;
 
-        if (sentence != null ? !sentence.equals(sentence1.sentence) : sentence1.sentence != null) return false;
+        if (data != null ? !data.equals(sentence1.data) : sentence1.data != null) return false;
         return sentenceComponents != null ? sentenceComponents.equals(sentence1.sentenceComponents) : sentence1.sentenceComponents == null;
     }
 
     @Override
     public int hashCode() {
-        int result = sentence != null ? sentence.hashCode() : 0;
+        int result = data != null ? data.hashCode() : 0;
         result = 31 * result + (sentenceComponents != null ? sentenceComponents.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "Sentence: " + sentence + " sentenceComponents=" + sentenceComponents;
+        return getClass().getName() + ": " + data + " sentenceComponents=" + sentenceComponents;
     }
 }

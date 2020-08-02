@@ -2,14 +2,14 @@ package by.epamtc.protsko.textprocessing.bean;
 
 public class CodeBlock implements DataComponent {
 
-    private String codeBlock;
+    private String data;
 
-    public CodeBlock(String codeBlock) {
-        this.codeBlock = codeBlock;
+    public CodeBlock(String data) {
+        this.data = data;
     }
 
-    public String getCodeBlock() {
-        return codeBlock;
+    public String getData() {
+        return data;
     }
 
     @Override
@@ -19,16 +19,16 @@ public class CodeBlock implements DataComponent {
 
         CodeBlock codeBlock1 = (CodeBlock) o;
 
-        return codeBlock != null ? codeBlock.equals(codeBlock1.codeBlock) : codeBlock1.codeBlock == null;
+        return data != null ? data.equals(codeBlock1.data) : codeBlock1.data == null;
     }
 
     @Override
     public int hashCode() {
-        return codeBlock != null ? codeBlock.hashCode() : 0;
+        return data != null ? data.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return  "codeBlock: " + codeBlock;
+        return getClass().getName() + ": " + data;
     }
 }
