@@ -1,23 +1,32 @@
 package by.epamtc.protsko.textprocessing.service.impl;
 
 import by.epamtc.protsko.textprocessing.bean.*;
+import by.epamtc.protsko.textprocessing.dao.DaoFactory;
+import by.epamtc.protsko.textprocessing.dao.TextDAO;
 import by.epamtc.protsko.textprocessing.service.TextService;
-import by.epamtc.protsko.textprocessing.service.component.TextComponentsGetter;
+import by.epamtc.protsko.textprocessing.service.util.TextUtils;
 
 import java.util.*;
 
 public class TextServiceImpl implements TextService {
-    TextComponentsGetter textComponentsGetter = TextComponentsGetter.getInstance();
+    private TextUtils textUtils = TextUtils.getInstance();
 
 
     @Override
-    public List<Sentence> searchSentencesWithSameWords(Text text) {
+    public Text getSourceText() {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        TextDAO textDAO = daoFactory.getTextDAO();
+        return textDAO.getText();
+    }
+
+    @Override
+    public List<Sentence> getSentencesWithSameWords(Text text) {
         List<Sentence> resultList = new ArrayList<>();
         Set<Word> words = new HashSet<>();
 
-        List<Sentence> sentencesList = textComponentsGetter.getTextSentences(text);
+        List<Sentence> sentencesList = textUtils.getTextSentences(text);
         for (Sentence sentence : sentencesList) {
-            List<Word> sentenceWords = textComponentsGetter.getSentenceWords(sentence);
+            List<Word> sentenceWords = textUtils.getSentenceWords(sentence);
 
             words.addAll(sentenceWords);
             if (words.size() != sentenceWords.size()) {
@@ -29,35 +38,37 @@ public class TextServiceImpl implements TextService {
 
 
     @Override
-    public List<Sentence> searchWordsOfGivenLength(Text text, int givenLength) {
-        List<Sentence> resultList = new ArrayList<>();
-        Set<Word> set = new LinkedHashSet<>();
+    public List<Word> getWordsOfGivenLengthInInterrogativeSentence(Text text, int givenLength) {
+        List<Word> resultList = new ArrayList<>();
+        Set<Word> wordLinkedHashSet = new LinkedHashSet<>();
 
-        List<Sentence> sentencesList = textComponentsGetter.getTextSentences(text);
+        List<Sentence> sentencesList = textUtils.getTextSentences(text);
         for (Sentence sentence : sentencesList) {
-            List<PunctuationMark> sentencePunctuationMarks = textComponentsGetter.getSentencePunctuationMarks(sentence);
+            List<PunctuationMark> sentencePunctuationMarks = textUtils.getSentencePunctuationMarks(sentence);
 
-            if (sentencePunctuationMarks.contains('?')) {
-                resultList.add(sentence);
-
-                List<Word> sentenceWords = textComponentsGetter.getSentenceWords(sentence);
-                for (Word sentenceWord : sentenceWords) {
-                    if (sentenceWord.getData().length() == givenLength) {
-                        set.add(sentenceWord);
-                    }
+            for (PunctuationMark sentencePunctuationMark : sentencePunctuationMarks) {
+                if (sentencePunctuationMark.getData().equals("?")) {
+                    continue;
                 }
-                sentence.setSentenceComponents(new ArrayList<>(set));
             }
+
+            List<Word> sentenceWords = textUtils.getSentenceWords(sentence);
+            for (Word sentenceWord : sentenceWords) {
+                if (sentenceWord.getData().length() == givenLength) {
+                    wordLinkedHashSet.add(sentenceWord);
+                }
+            }
+            sentence.setSentenceComponents(new ArrayList<>(wordLinkedHashSet));
         }
         return resultList;
     }
 
 
     @Override
-    public List<Word> sortWordsByCountOfGivenLetter(Text text, Character letter) {
-        List<Word> resultList = new ArrayList<>();
+    public List<Sentence> getSortedSentencesByCountOfWords(Text text) {
+        List<Sentence> sentencesList = textUtils.getTextSentences(text);
 
-
-        return resultList;
+        sentencesList.sort((o1, o2) -> textUtils.getSentenceWords(o1).size() - textUtils.getSentenceWords(o2).size());
+        return sentencesList;
     }
 }

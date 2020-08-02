@@ -5,6 +5,7 @@ import java.util.List;
 
 public class TextBlock implements DataComponent {
 
+    private static final TextComponentTypes type = TextComponentTypes.TEXT_BLOCK;
     private String data;
     private List<Sentence> sentences;
 
@@ -31,6 +32,10 @@ public class TextBlock implements DataComponent {
 
     public void setSentences(List<Sentence> sentences) {
         this.sentences = sentences;
+    }
+
+    public TextComponentTypes getType() {
+        return type;
     }
 
     @Override

@@ -2,6 +2,7 @@ package by.epamtc.protsko.textprocessing.bean;
 
 public class CodeBlock implements DataComponent {
 
+    private static final TextComponentTypes type = TextComponentTypes.CODE_BLOCK;
     private String data;
 
     public CodeBlock(String data) {
@@ -10,6 +11,10 @@ public class CodeBlock implements DataComponent {
 
     public String getData() {
         return data;
+    }
+
+    public TextComponentTypes getType() {
+        return type;
     }
 
     @Override

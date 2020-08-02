@@ -6,7 +6,7 @@ import by.epamtc.protsko.textprocessing.dao.parser.SourceTextParser;
 import by.epamtc.protsko.textprocessing.dao.reader.DataReader;
 
 public class TextDAOImpl implements TextDAO {
-    private final String fileName = "source.txt";
+    private static final String fileName = "source.txt";
 
     @Override
     public Text getText() {

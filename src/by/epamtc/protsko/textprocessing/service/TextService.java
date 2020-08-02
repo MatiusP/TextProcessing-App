@@ -8,10 +8,12 @@ import java.util.List;
 
 public interface TextService {
 
-    List<Sentence> searchSentencesWithSameWords(Text text);
+    Text getSourceText();
 
-    List<Sentence> searchWordsOfGivenLength(Text text, int givenLength);
+    List<Sentence> getSentencesWithSameWords(Text text);
 
-    List<Word> sortWordsByCountOfGivenLetter(Text text, Character letter);
+    List<Word> getWordsOfGivenLengthInInterrogativeSentence(Text text, int givenLength);
+
+    List<Sentence> getSortedSentencesByCountOfWords(Text text);
 
 }

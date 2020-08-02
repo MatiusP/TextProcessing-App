@@ -1,28 +1,39 @@
 package by.epamtc.protsko.textprocessing.main;
 
+import by.epamtc.protsko.textprocessing.bean.Sentence;
 import by.epamtc.protsko.textprocessing.bean.Text;
-import by.epamtc.protsko.textprocessing.dao.DaoFactory;
-import by.epamtc.protsko.textprocessing.dao.TextDAO;
+import by.epamtc.protsko.textprocessing.bean.Word;
 import by.epamtc.protsko.textprocessing.service.ServiceFactory;
 import by.epamtc.protsko.textprocessing.service.TextService;
+
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        TextDAO textDAO = daoFactory.getTextDAO();
-        Text sourceText = textDAO.getText();
-
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         TextService textService = serviceFactory.getTextService();
+        Text sourceText = textService.getSourceText();
 
 
-        textService.searchSentencesWithSameWords(sourceText);
+        List<Sentence> sentencesWithSameWords = textService.getSentencesWithSameWords(sourceText);
+        for (Sentence sentencesWithSameWord : sentencesWithSameWords) {
+            System.out.println(sentencesWithSameWord);
+        }
 
-        textService.searchWordsOfGivenLength(sourceText, 4);
 
-        textService.sortWordsByCountOfGivenLetter(sourceText, 'b');
+        List<Word> wordsOfGivenLengthInInterrogativeSentence =
+                textService.getWordsOfGivenLengthInInterrogativeSentence(sourceText, 4);
+        for (Word word : wordsOfGivenLengthInInterrogativeSentence) {
+            System.out.print(word);
+        }
+
+
+        List<Sentence> sortedSentencesByCountOfWords = textService.getSortedSentencesByCountOfWords(sourceText);
+        for (Sentence sortedSentencesByCountOfWord : sortedSentencesByCountOfWords) {
+            System.out.println(sortedSentencesByCountOfWord);
+        }
 
 
     }

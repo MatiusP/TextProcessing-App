@@ -2,6 +2,7 @@ package by.epamtc.protsko.textprocessing.bean;
 
 public class Word extends SentenceComponent {
 
+    private static final TextComponentTypes type = TextComponentTypes.WORD;
     private String data;
 
     public Word(String data, int componentOrder) {
@@ -11,6 +12,10 @@ public class Word extends SentenceComponent {
 
     public String getData() {
         return data;
+    }
+
+    public TextComponentTypes getType() {
+        return type;
     }
 
     @Override

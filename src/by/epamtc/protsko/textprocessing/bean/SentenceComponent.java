@@ -6,4 +6,6 @@ public abstract class SentenceComponent {
     public int getSentenceComponentOrder() {
         return sentenceComponentOrder;
     }
+
+    public abstract TextComponentTypes getType();
 }

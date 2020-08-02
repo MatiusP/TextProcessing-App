@@ -1,17 +1,17 @@
-package by.epamtc.protsko.textprocessing.service.component;
+package by.epamtc.protsko.textprocessing.service.util;
 
 import by.epamtc.protsko.textprocessing.bean.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextComponentsGetter {
-    private static final TextComponentsGetter instance = new TextComponentsGetter();
+public class TextUtils {
+    private static final TextUtils instance = new TextUtils();
 
-    private TextComponentsGetter() {
+    private TextUtils() {
     }
 
-    public static TextComponentsGetter getInstance() {
+    public static TextUtils getInstance() {
         return instance;
     }
 
@@ -25,12 +25,13 @@ public class TextComponentsGetter {
 
         List<DataComponent> dataComponents = getDataComponents(text);
         for (DataComponent dataComponent : dataComponents) {
-            if (dataComponent.getClass() == TextBlock.class) {
+            if (dataComponent.getType() == TextComponentTypes.TEXT_BLOCK) {
                 textBlocks.add((TextBlock) dataComponent);
             }
         }
         return textBlocks;
     }
+
 
     public List<Sentence> getTextSentences(Text text) {
         List<Sentence> textSentences = new ArrayList<>();
@@ -42,12 +43,13 @@ public class TextComponentsGetter {
         return textSentences;
     }
 
+
     public List<Word> getSentenceWords(Sentence sentence) {
         List<Word> sentenceWords = new ArrayList<>();
 
         List<SentenceComponent> sentenceComponents = sentence.getSentenceComponents();
         for (SentenceComponent sentenceComponent : sentenceComponents) {
-            if (sentenceComponent.getClass() == Word.class) {
+            if (sentenceComponent.getType() == TextComponentTypes.WORD) {
                 sentenceWords.add((Word) sentenceComponent);
             }
         }
@@ -59,11 +61,10 @@ public class TextComponentsGetter {
 
         List<SentenceComponent> sentenceComponents = sentence.getSentenceComponents();
         for (SentenceComponent sentenceComponent : sentenceComponents) {
-            if (sentenceComponent.getClass() == PunctuationMark.class) {
+            if (sentenceComponent.getType() == TextComponentTypes.PUNCTUATION_MARK) {
                 sentencePunctuationMarks.add((PunctuationMark) sentenceComponent);
             }
         }
         return sentencePunctuationMarks;
     }
-
 }

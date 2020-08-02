@@ -2,6 +2,7 @@ package by.epamtc.protsko.textprocessing.bean;
 
 public class PunctuationMark extends SentenceComponent {
 
+    private static final TextComponentTypes type = TextComponentTypes.PUNCTUATION_MARK;
     private String data;
 
     public PunctuationMark(String data, int componentOrder) {
@@ -11,6 +12,10 @@ public class PunctuationMark extends SentenceComponent {
 
     public String getData() {
         return data;
+    }
+
+    public TextComponentTypes getType() {
+        return type;
     }
 
     @Override
