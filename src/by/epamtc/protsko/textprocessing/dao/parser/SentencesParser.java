@@ -3,6 +3,7 @@ package by.epamtc.protsko.textprocessing.dao.parser;
 import by.epamtc.protsko.textprocessing.bean.PunctuationMark;
 import by.epamtc.protsko.textprocessing.bean.SentenceComponent;
 import by.epamtc.protsko.textprocessing.bean.Word;
+import by.epamtc.protsko.textprocessing.dao.reader.PropertyReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,9 @@ import java.util.regex.Pattern;
 
 public class SentencesParser {
 
-    private static final String parserBySentenceElementsRegex = "(?<Word>[\\d\\w-%]+)|(?<PunctuationMark>([\\W]))";
+    private static final String parserByWordsRegex = PropertyReader.getInstance().parseSentenceByWordsRegex();
+    private static final String parserByPunctuationMarkRegex = PropertyReader.getInstance().parseSentenceByPunctuationMarksRegex();
+    private static final String parserBySentenceElementsRegex = (parserByWordsRegex + "|" + parserByPunctuationMarkRegex);
     private static final Pattern pattern = Pattern.compile(parserBySentenceElementsRegex);
 
     private static final SentencesParser instance = new SentencesParser();
@@ -45,3 +48,16 @@ public class SentencesParser {
         return sentenceComponents;
     }
 }
+
+//class Main4 {
+//
+//    public static void main(String[] args) {
+//
+//        SentencesParser obj = SentencesParser.getInstance();
+//        List<SentenceComponent> parse = obj.parse("1.The if-then and if-then-else Statements");
+//
+//        for (SentenceComponent sentenceComponent : parse) {
+//            System.out.println(sentenceComponent);
+//        }
+//    }
+//}

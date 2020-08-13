@@ -53,6 +53,6 @@ public class Sentence {
 
     @Override
     public String toString() {
-        return getClass().getName() + ": " + data + " sentenceComponents=" + sentenceComponents;
+        return "Sentence: " + data + " sentenceComponents=" + sentenceComponents;
     }
 }

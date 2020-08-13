@@ -36,6 +36,6 @@ public class Text {
 
     @Override
     public String toString() {
-        return getClass().getName() + ": " + data + ';';
+        return "" + data;
     }
 }

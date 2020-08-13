@@ -35,6 +35,6 @@ public class Word extends SentenceComponent {
 
     @Override
     public String toString() {
-        return getClass().getName() + ": " + data;
+        return "Word: " + data;
     }
 }

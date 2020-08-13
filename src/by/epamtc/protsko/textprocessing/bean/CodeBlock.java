@@ -34,6 +34,6 @@ public class CodeBlock implements DataComponent {
 
     @Override
     public String toString() {
-        return getClass().getName() + ": " + data;
+        return "Code block: " + data;
     }
 }

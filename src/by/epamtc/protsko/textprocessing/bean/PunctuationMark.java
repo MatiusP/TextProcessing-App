@@ -35,6 +35,6 @@ public class PunctuationMark extends SentenceComponent {
 
     @Override
     public String toString() {
-        return getClass().getName() + ": " + data;
+        return "Punctuation mark: " + data;
     }
 }
