@@ -6,26 +6,23 @@ import java.io.InputStreamReader;
 
 public class ConsoleRunner {
 
-    private static String userCommand;
-
-
-    private static String getUserCommand() throws IOException {
+    private static void getUserCommand() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Выберите действие над текстом: ");
 
         mark:
         while (true) {
-            userCommand = reader.readLine();
+            String userCommand = reader.readLine();
 
             switch (userCommand) {
                 case "1":
-                    userCommand = "sentencesWithSameWords";
+                    SocketConnection.getSentencesWithSameWords();
                     break mark;
                 case "2":
-                    userCommand = "wordsOfGivenLengthInInterrogativeSentence";
+                    SocketConnection.getWordsOfGivenLengthInInterrogativeSentence();
                     break mark;
                 case "3":
-                    userCommand = "sortedSentencesByCountOfWords";
+                    SocketConnection.getSortedSentencesByCountOfWords();
                     break mark;
                 case "4":
                     break mark;
@@ -33,13 +30,10 @@ public class ConsoleRunner {
                     System.out.print("Некорректный ввод. Попробуйте еще раз: ");
             }
         }
-        return userCommand;
     }
-
 
     public void startProgram() throws IOException {
         Menu.showMenu();
-        String userCommand = ConsoleRunner.getUserCommand();
-        SocketConnection.sendCommandToServer(userCommand);
+        ConsoleRunner.getUserCommand();
     }
 }

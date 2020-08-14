@@ -19,8 +19,10 @@ public class SocketConnection {
                 String word = command;
                 out.write(word + "\n"); // отправляем сообщение на сервер
                 out.flush();
+
                 String serverWord = in.readLine(); // ждём, что скажет сервер
                 System.out.println(serverWord); // получив - выводим на экран
+
             } finally { // в любом случае необходимо закрыть сокет и потоки
                 System.out.println("Клиент был закрыт...");
                 clientSocket.close();
@@ -32,7 +34,15 @@ public class SocketConnection {
         }
     }
 
-    public static void sendCommandToServer(String command) {
-        SocketConnection.main(command);
+    static void getSentencesWithSameWords() {
+        main("sentencesWithSameWords");
+    }
+
+    static void getWordsOfGivenLengthInInterrogativeSentence() {
+        main("wordsOfGivenLengthInInterrogativeSentence");
+    }
+
+    static void getSortedSentencesByCountOfWords() {
+        main("sortedSentencesByCountOfWords");
     }
 }
