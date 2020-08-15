@@ -13,20 +13,21 @@ public class TextControllerImpl implements TextController {
 
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private TextService textService = serviceFactory.getTextService();
+    private final Text sourceText =  textService.getSourceText();
 
 
     @Override
-    public List<Sentence> sentencesWithSameWords(Text text) {
-        return textService.getSentencesWithSameWords(text);
+    public List<Sentence> sentencesWithSameWords() {
+        return textService.getSentencesWithSameWords(sourceText);
     }
 
     @Override
-    public List<Word> wordsOfGivenLengthInInterrogativeSentence(Text text, int givenLength) {
-        return textService.getWordsOfGivenLengthInInterrogativeSentence(text, givenLength);
+    public List<Word> wordsOfGivenLengthInInterrogativeSentence(int givenLength) {
+        return textService.getWordsOfGivenLengthInInterrogativeSentence(sourceText, givenLength);
     }
 
     @Override
-    public List<Sentence> sortedSentencesByCountOfWords(Text text) {
-        return textService.getSortedSentencesByCountOfWords(text);
+    public List<Sentence> sortedSentencesByCountOfWords() {
+        return textService.getSortedSentencesByCountOfWords(sourceText);
     }
 }

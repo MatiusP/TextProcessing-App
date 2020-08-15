@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface TextController {
 
-    List<Sentence> sentencesWithSameWords(Text text);
+    List<Sentence> sentencesWithSameWords();
 
-    List<Word> wordsOfGivenLengthInInterrogativeSentence(Text text, int givenLength);
+    List<Word> wordsOfGivenLengthInInterrogativeSentence(int givenLength);
 
-    List<Sentence> sortedSentencesByCountOfWords(Text text);
+    List<Sentence> sortedSentencesByCountOfWords();
 }

@@ -24,8 +24,6 @@ public class ServerRequestDispatcher {
 
                     userCommand = in.readLine(); // ждём пока клиент что-нибудь нам напишет
 
-//                    System.out.println(word);
-
                     out.write("На сервер было передано : " + userCommand + "\n");
                     out.flush(); // выталкиваем все из буфера
 
@@ -42,7 +40,7 @@ public class ServerRequestDispatcher {
         }
     }
 
-    public static String getUserCommand() {
+    public static String getUserCommand() throws IOException {
         return userCommand;
     }
 

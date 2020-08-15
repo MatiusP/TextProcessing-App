@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class ConsoleRunner {
 
-    private static void getUserAction() throws IOException {
+    private static void executeUserAction() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Выберите действие над текстом: ");
 
@@ -34,6 +34,6 @@ public class ConsoleRunner {
 
     public void startProgram() throws IOException {
         Menu.showMenu();
-        ConsoleRunner.getUserAction();
+        ConsoleRunner.executeUserAction();
     }
 }
