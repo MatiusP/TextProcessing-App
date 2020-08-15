@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class ConsoleRunner {
 
-    private static void getUserCommand() throws IOException {
+    private static void getUserAction() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Выберите действие над текстом: ");
 
@@ -16,13 +16,13 @@ public class ConsoleRunner {
 
             switch (userCommand) {
                 case "1":
-                    SocketConnection.getSentencesWithSameWords();
+                    ClientSocketConnection.getSentencesWithSameWords();
                     break mark;
                 case "2":
-                    SocketConnection.getWordsOfGivenLengthInInterrogativeSentence();
+                    ClientSocketConnection.getWordsOfGivenLengthInInterrogativeSentence();
                     break mark;
                 case "3":
-                    SocketConnection.getSortedSentencesByCountOfWords();
+                    ClientSocketConnection.getSortedSentencesByCountOfWords();
                     break mark;
                 case "4":
                     break mark;
@@ -34,6 +34,6 @@ public class ConsoleRunner {
 
     public void startProgram() throws IOException {
         Menu.showMenu();
-        ConsoleRunner.getUserCommand();
+        ConsoleRunner.getUserAction();
     }
 }

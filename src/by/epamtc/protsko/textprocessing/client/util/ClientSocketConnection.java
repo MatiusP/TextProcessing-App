@@ -3,13 +3,13 @@ package by.epamtc.protsko.textprocessing.client.util;
 import java.io.*;
 import java.net.Socket;
 
-public class SocketConnection {
+public class ClientSocketConnection {
 
     private static Socket clientSocket; //сокет для общения
     private static BufferedReader in; // поток чтения из сокета
     private static BufferedWriter out; // поток записи в сокет
 
-    private static void main(String command) {
+    private static void runClientSocket(String command) {
         try {
             try {
                 clientSocket = new Socket("localhost", 4004); // этой строкой мы запрашиваем у сервера доступ на соединение
@@ -35,14 +35,14 @@ public class SocketConnection {
     }
 
     static void getSentencesWithSameWords() {
-        main("sentencesWithSameWords");
+        runClientSocket("sentencesWithSameWords");
     }
 
     static void getWordsOfGivenLengthInInterrogativeSentence() {
-        main("wordsOfGivenLengthInInterrogativeSentence");
+        runClientSocket("wordsOfGivenLengthInInterrogativeSentence");
     }
 
     static void getSortedSentencesByCountOfWords() {
-        main("sortedSentencesByCountOfWords");
+        runClientSocket("sortedSentencesByCountOfWords");
     }
 }

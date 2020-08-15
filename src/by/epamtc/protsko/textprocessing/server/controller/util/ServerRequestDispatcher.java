@@ -23,7 +23,7 @@ public class ServerRequestDispatcher {
 
                     String word = in.readLine(); // ждём пока клиент что-нибудь нам напишет
                     System.out.println(word);
-                    out.write("Привет, это Сервер! Подтверждаю, вы написали : " + word + "\n");
+                    out.write("На сервер было передано : " + word + "\n");
                     out.flush(); // выталкиваем все из буфера
 
                 } finally { // в любом случае сокет будет закрыт
