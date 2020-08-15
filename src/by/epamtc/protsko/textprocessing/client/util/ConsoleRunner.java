@@ -33,7 +33,6 @@ public class ConsoleRunner {
     }
 
     public void startProgram() throws IOException {
-        Menu.showMenu();
         ConsoleRunner.executeUserAction();
     }
 }
