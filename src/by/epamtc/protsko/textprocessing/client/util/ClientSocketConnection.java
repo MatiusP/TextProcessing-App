@@ -1,7 +1,10 @@
 package by.epamtc.protsko.textprocessing.client.util;
 
+import by.epamtc.protsko.textprocessing.common.bean.Sentence;
+
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 
 public class ClientSocketConnection {
 

@@ -31,3 +31,18 @@ public class TextControllerImpl implements TextController {
         return textService.getSortedSentencesByCountOfWords(sourceText);
     }
 }
+
+class Main{
+
+    public static void main(String[] args) {
+        TextControllerImpl textController = new TextControllerImpl();
+
+        List<Sentence> sentences = textController.sentencesWithSameWords();
+
+        for (Sentence sentence : sentences) {
+            System.out.println(sentence);
+        }
+
+    }
+}
+

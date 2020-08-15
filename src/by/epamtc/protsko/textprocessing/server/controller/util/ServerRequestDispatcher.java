@@ -24,7 +24,9 @@ public class ServerRequestDispatcher {
 
                     userCommand = in.readLine(); // ждём пока клиент что-нибудь нам напишет
 
-                    out.write("На сервер было передано : " + userCommand + "\n");
+                    ByteArrayOutputStream commandResult = RequestDispatcher.getCommandResult(userCommand);
+
+                    out.write("На клиента возвращаем : " + commandResult + "\n");
                     out.flush(); // выталкиваем все из буфера
 
                 } finally { // в любом случае сокет будет закрыт
