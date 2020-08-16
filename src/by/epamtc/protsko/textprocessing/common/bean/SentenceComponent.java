@@ -1,6 +1,8 @@
 package by.epamtc.protsko.textprocessing.common.bean;
 
-public abstract class SentenceComponent {
+import java.io.Serializable;
+
+public abstract class SentenceComponent implements Serializable {
     protected int sentenceComponentOrder;
 
     public int getSentenceComponentOrder() {

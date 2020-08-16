@@ -1,9 +1,10 @@
 package by.epamtc.protsko.textprocessing.common.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextBlock implements DataComponent {
+public class TextBlock implements DataComponent, Serializable {
 
     private static final TextComponentTypes type = TextComponentTypes.TEXT_BLOCK;
     private String data;

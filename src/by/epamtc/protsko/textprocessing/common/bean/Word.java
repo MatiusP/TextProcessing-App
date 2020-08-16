@@ -2,7 +2,7 @@ package by.epamtc.protsko.textprocessing.common.bean;
 
 import java.io.Serializable;
 
-public class Word extends SentenceComponent implements Serializable {
+public class Word extends SentenceComponent {
 
     private static final long serialVersionUID = 1L;
 

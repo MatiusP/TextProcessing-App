@@ -1,8 +1,12 @@
 package by.epamtc.protsko.textprocessing.server.controller.util;
 
+import by.epamtc.protsko.textprocessing.common.bean.Sentence;
+import by.epamtc.protsko.textprocessing.server.controller.dispatcher.RequestDispatcher;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 
 public class ServerRequestDispatcher {
 
@@ -24,9 +28,10 @@ public class ServerRequestDispatcher {
 
                     userCommand = in.readLine(); // ждём пока клиент что-нибудь нам напишет
 
-                    ByteArrayOutputStream commandResult = RequestDispatcher.getCommandResult(userCommand);
+                    Object commandResult = RequestDispatcher.executeCommand(userCommand);
+                    ByteArrayOutputStream outputStream = serializeResult(commandResult);
 
-                    out.write("На клиента возвращаем : " + commandResult + "\n");
+                    out.write("На клиента возвращаем : " + outputStream + "\n");
                     out.flush(); // выталкиваем все из буфера
 
                 } finally { // в любом случае сокет будет закрыт
@@ -42,13 +47,18 @@ public class ServerRequestDispatcher {
         }
     }
 
-    public static String getUserCommand() throws IOException {
-        return userCommand;
+
+    private static ByteArrayOutputStream serializeResult(Object resultCommand) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(byteArrayOutputStream);
+        oos.writeObject(resultCommand);
+        oos.flush();
+
+        return byteArrayOutputStream;
     }
 
-
-    public static void main(String[] args) {
-        ServerRequestDispatcher obj = new ServerRequestDispatcher();
-        obj.runServerSocket();
+    public static void main(String[] args){
+        ServerRequestDispatcher serverRequestDispatcher = new ServerRequestDispatcher();
+        serverRequestDispatcher.runServerSocket();
     }
 }

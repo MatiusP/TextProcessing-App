@@ -1,6 +1,8 @@
 package by.epamtc.protsko.textprocessing.common.bean;
 
-public class CodeBlock implements DataComponent {
+import java.io.Serializable;
+
+public class CodeBlock implements DataComponent, Serializable {
 
     private static final TextComponentTypes type = TextComponentTypes.CODE_BLOCK;
     private String data;

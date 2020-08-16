@@ -1,5 +1,7 @@
 package by.epamtc.protsko.textprocessing.common.bean;
 
+import java.io.Serializable;
+
 public class PunctuationMark extends SentenceComponent {
 
     private static final TextComponentTypes type = TextComponentTypes.PUNCTUATION_MARK;

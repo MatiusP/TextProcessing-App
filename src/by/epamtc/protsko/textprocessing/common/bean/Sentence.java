@@ -1,9 +1,10 @@
 package by.epamtc.protsko.textprocessing.common.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sentence {
+public class Sentence implements Serializable {
 
     private String data;
     private List<SentenceComponent> sentenceComponents;

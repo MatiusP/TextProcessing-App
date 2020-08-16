@@ -1,9 +1,10 @@
 package by.epamtc.protsko.textprocessing.common.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Text {
+public class Text implements Serializable {
 
     private List<DataComponent> data;
 
