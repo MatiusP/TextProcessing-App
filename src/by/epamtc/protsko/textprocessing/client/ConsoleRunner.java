@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class ConsoleRunner {
 
     private static void showMenu() {
-        System.out.println("----- Это программа для работы с текстовым файлом -----\n");
+        System.out.println("----- Программа для работы с текстовым файлом -----\n");
         System.out.println("Выберите действие, которое необходимо выполнить с текстовым файлом:");
         System.out.println("1 - Поиск предложений в тексте, в которых есть одинаковые слова.");
         System.out.println("2 - Поиск и печать (без повторений, во всех вопросительных предложениях текста) слов заданной длины.");
@@ -26,16 +26,16 @@ public class ConsoleRunner {
 
             switch (userCommand) {
                 case "1":
-                    ClientSocketConnection.getSentencesWithSameWords();
+                    ClientDispatcher.getSentencesWithSameWords();
                     break;
                 case "2":
-                    ClientSocketConnection.getWordsOfGivenLengthInInterrogativeSentence();
+                    ClientDispatcher.getWordsOfGivenLengthInInterrogativeSentence();
                     break;
                 case "3":
-                    ClientSocketConnection.getSortedSentencesByCountOfWords();
+                    ClientDispatcher.getSortedSentencesByCountOfWords();
                     break;
                 case "4":
-                    ClientSocketConnection.exitProgram();
+                    ClientDispatcher.exitProgram();
                     break;
                 default:
                     System.out.print("Некорректный ввод. Попробуйте еще раз: ");
