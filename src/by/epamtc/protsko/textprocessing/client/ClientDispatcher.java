@@ -4,28 +4,43 @@ import java.io.*;
 import java.net.Socket;
 
 public class ClientDispatcher {
+    private static Socket clientSocket;
 
     private static void runClientSocket(String userAction) {
-        try {
+        try (ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())) {
 
-            Socket clientSocket = new Socket("localhost", 4004);
-            ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+            clientSocket = new Socket("localhost", 4004);
 
-            if (!userAction.equals("exit")) {
-                out.writeUTF(userAction); // отправляем сообщение на сервер
-                out.flush();
+            int i = 0;
+            do {
+                if (i == 1) {
+                    new ConsoleRunner().startProgram();
+                }
+                if (!userAction.equals("exit")) {
 
-                Object object = in.readObject();
-                System.out.println("result" + object);
-            }
+                    out.writeUTF(userAction);
+                    out.flush();
 
-        } catch (Exception e) {
+                    Object object = in.readObject();
+                    System.out.println("result" + object);
+                    i = 1;
+                }
+                clientSocket.close();
+            } while (!clientSocket.isClosed());
+
+            Object object = in.readObject();
+            System.out.println("result" + object);
+
+        } catch (
+                Exception e) {
             System.err.println(e);
         }
+
     }
 
     static void getSentencesWithSameWords() {
+
         runClientSocket("sentencesWithSameWords");
     }
 

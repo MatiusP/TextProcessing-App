@@ -1,6 +1,7 @@
 package by.epamtc.protsko.textprocessing.server.controller;
 
 import by.epamtc.protsko.textprocessing.server.controller.exception.ControllerException;
+import by.epamtc.protsko.textprocessing.server.controller.handler.UserCommandHandler;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -19,12 +20,11 @@ public class ServerRunner {
 
             while (!clientSocket.isClosed()) {
                 String userCommand = in.readUTF();
-
                 if (userCommand.equals("exit")) {
                     break;
                 }
 
-                out.writeObject(CommandHandler.executeCommand(userCommand));
+                out.writeObject(UserCommandHandler.executeCommand(userCommand));
                 out.flush();
             }
         } catch (Exception exception) {

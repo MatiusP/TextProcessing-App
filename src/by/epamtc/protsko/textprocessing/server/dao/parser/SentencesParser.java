@@ -48,16 +48,3 @@ public class SentencesParser {
         return sentenceComponents;
     }
 }
-
-//class Main4 {
-//
-//    public static void main(String[] args) {
-//
-//        SentencesParser obj = SentencesParser.getInstance();
-//        List<SentenceComponent> parse = obj.parse("1.The if-then and if-then-else Statements");
-//
-//        for (SentenceComponent sentenceComponent : parse) {
-//            System.out.println(sentenceComponent);
-//        }
-//    }
-//}

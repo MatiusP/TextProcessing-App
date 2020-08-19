@@ -54,6 +54,6 @@ public class Sentence implements Serializable {
 
     @Override
     public String toString() {
-        return "Sentence: " + data + " sentenceComponents=" + sentenceComponents;
+        return "Sentence: " + data +"\n";
     }
 }

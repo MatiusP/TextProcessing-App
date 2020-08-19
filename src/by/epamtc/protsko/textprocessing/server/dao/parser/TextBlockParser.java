@@ -36,18 +36,3 @@ public class TextBlockParser {
         return sentences;
     }
 }
-
-//class Main {
-//    public static void main(String[] args) {
-//        TextBlockParser obj = TextBlockParser.getInstance();
-//        List<Sentence> parse = obj.parse("1.The if-then and if-then-else Statements\n" +
-//                "1.1.The if-then Statement\n" +
-//                "The if-then statement is the most basic of all the control flow statements. It tells your program to execute a certain section of code only if a particular test evaluates to true. For example, the Bicycle class could allow the brakes to decrease the bicycle's speed only if the bicycle is already in motion. One possible implementation of the applyBrakes method could be as follows. ");
-//
-//        for (Sentence sentence : parse) {
-//            System.out.println(sentence);
-//        }
-//
-//
-//    }
-//}
