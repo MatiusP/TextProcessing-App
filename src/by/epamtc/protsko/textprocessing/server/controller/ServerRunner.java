@@ -20,6 +20,7 @@ public class ServerRunner {
 
             while (!clientSocket.isClosed()) {
                 String userCommand = in.readUTF();
+
                 if (userCommand.equals("exit")) {
                     break;
                 }

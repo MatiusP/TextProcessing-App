@@ -1,58 +1,51 @@
 package by.epamtc.protsko.textprocessing.client;
 
-import java.io.*;
+import by.epamtc.protsko.textprocessing.server.controller.exception.ControllerException;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ClientDispatcher {
     private static Socket clientSocket;
+    private static ObjectInputStream in;
+    private static ObjectOutputStream out;
 
-    private static void runClientSocket(String userAction) {
-        try (ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream())) {
-
+    public static void runClientSocket() {
+        try {
             clientSocket = new Socket("localhost", 4004);
-
-            int i = 0;
-            do {
-                if (i == 1) {
-                    new ConsoleRunner().startProgram();
-                }
-                if (!userAction.equals("exit")) {
-
-                    out.writeUTF(userAction);
-                    out.flush();
-
-                    Object object = in.readObject();
-                    System.out.println("result" + object);
-                    i = 1;
-                }
-                clientSocket.close();
-            } while (!clientSocket.isClosed());
-
-            Object object = in.readObject();
-            System.out.println("result" + object);
-
-        } catch (
-                Exception e) {
-            System.err.println(e);
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
+            in = new ObjectInputStream(clientSocket.getInputStream());
+        } catch (IOException exception) {
+            throw new ControllerException(exception);
         }
-
     }
 
-    static void getSentencesWithSameWords() {
+    public static void getResult(String userAction) {
+        try {
 
-        runClientSocket("sentencesWithSameWords");
+            if (!userAction.equals("exit")) {
+                out.writeUTF(userAction);
+                out.flush();
+
+                Object object = in.readObject();
+                System.out.println("result" + object);
+            } else {
+                closeClientSocket();
+            }
+        } catch (Exception exception) {
+            throw new ControllerException(exception);
+        }
     }
 
-    static void getWordsOfGivenLengthInInterrogativeSentence() {
-        runClientSocket("wordsOfGivenLengthInInterrogativeSentence");
-    }
-
-    static void getSortedSentencesByCountOfWords() {
-        runClientSocket("sortedSentencesByCountOfWords");
-    }
-
-    static void exitProgram() {
-        runClientSocket("exit");
+    private static void closeClientSocket() {
+        try {
+            in.close();
+            out.close();
+            clientSocket.close();
+        } catch (IOException exception) {
+            throw new ControllerException(exception);
+        }
     }
 }

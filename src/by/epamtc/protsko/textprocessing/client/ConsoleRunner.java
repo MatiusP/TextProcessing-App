@@ -16,36 +16,37 @@ public class ConsoleRunner {
     }
 
     private static void executeUserAction() throws IOException {
+        ClientDispatcher.runClientSocket();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Выберите действие над текстом: ");
-        boolean isCorrectAction;
+        boolean isPressExit = false;
 
         do {
-            isCorrectAction = true;
+            showMenu();
+            System.out.print("Выберите действие над текстом: ");
             String userCommand = reader.readLine();
 
             switch (userCommand) {
                 case "1":
-                    ClientDispatcher.getSentencesWithSameWords();
+                    ClientDispatcher.getResult("sentencesWithSameWords");
                     break;
                 case "2":
-                    ClientDispatcher.getWordsOfGivenLengthInInterrogativeSentence();
+                    ClientDispatcher.getResult("wordsOfGivenLengthInInterrogativeSentence");
                     break;
                 case "3":
-                    ClientDispatcher.getSortedSentencesByCountOfWords();
+                    ClientDispatcher.getResult("sortedSentencesByCountOfWords");
                     break;
                 case "4":
-                    ClientDispatcher.exitProgram();
+                    ClientDispatcher.getResult("exit");
+                    isPressExit = true;
                     break;
                 default:
                     System.out.print("Некорректный ввод. Попробуйте еще раз: ");
-                    isCorrectAction = false;
             }
-        } while (!isCorrectAction);
+        } while (!isPressExit);
     }
 
     public void startProgram() throws IOException {
-        showMenu();
+//        showMenu();
         ConsoleRunner.executeUserAction();
     }
 }
